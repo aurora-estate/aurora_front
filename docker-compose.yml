@@ -1,0 +1,15 @@
+version: '3'
+services:
+
+  web-app:
+    container_name: aurora_front
+    env_file: .env
+    environment:
+      STATE_ENV: ${STATE_ENV}
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    ports:
+      - "3001:3000"
