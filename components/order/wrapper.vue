@@ -10,7 +10,9 @@
                 <InputsDropdown v-model="activeTypeObject" :options="typesObject" :key="1" />
                 <InputsDropdown v-model="selectSity" :options="data.map(x => x.Name)" :key="2" />
                 <InputsNumber v-model="selectMoney" />
-                <InputsPhone v-model="selectNumber" />
+                <vue-tel-input v-model="selectNumber" @validate="validPhone"
+                    :placeholder="'Номер телефона'"></vue-tel-input>
+                <!-- <InputsPhone v-model="selectNumber" /> -->
             </div>
             <ButtonsTransparent @click="sendOrder" title="Оставить заявку" :tg="false" link="/" :wigth="true" black />
         </div>
@@ -51,9 +53,13 @@ const selectMoney = ref(null)
 const activeTypeObject = ref('Квартира')
 const typesObject = reactive(['Квартира', 'Дом', 'Участок', 'Коммерческая невижимость'])
 
+function validPhone(event) {
+    console.log('validPhone', event.valid);
 
+}
 
 async function sendOrder() {
+
     const formData =
         'Заявка с сайта' + '\n' +
         'Тип сделки: ' + activeType.value + '\n' +

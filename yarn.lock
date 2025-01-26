@@ -5762,6 +5762,11 @@ vue-router@^4.5.0, vue-router@latest:
   dependencies:
     "@vue/devtools-api" "^6.6.4"
 
+vue-tel-input@^9.3.0:
+  version "9.3.0"
+  resolved "https://registry.yarnpkg.com/vue-tel-input/-/vue-tel-input-9.3.0.tgz#77aea594f0431ffdb5d8d3c7a35c98d965da889c"
+  integrity sha512-8PgAFxO5npztMruL1O0NZxPDJScfc9Qx2mDERErRKS7XQ1l/MSk8rfi0XgPbNdOBiocdweDnikNdo3xSJrQodA==
+
 vue@^3.5.13, vue@latest:
   version "3.5.13"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.5.13.tgz#9f760a1a982b09c0c04a867903fc339c9f29ec0a"
