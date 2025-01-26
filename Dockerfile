@@ -1,33 +1,58 @@
-ARG NODE_VERSION=20.18.0
+# FROM node:20.18-slim
 
-FROM node:${NODE_VERSION}-slim as base
+# WORKDIR /app
 
-ARG PORT=3000
+# COPY package.json /app/
+# COPY yarn.lock /app/
 
-WORKDIR /src
+# ADD . /app
 
-# Build
-FROM base as build
+# RUN yarn 
 
-COPY --link package.json package-lock.json .
-RUN npm install
+# RUN yarn build
 
-COPY --link . .
+# ENV HOST 0.0.0.0
+# EXPOSE 3001
 
+
+
+# ENTRYPOINT ["node", ".output/server/index.mjs"]
+
+# ///
+
+FROM  node:20.18-slim as builder
+
+# create work directory in app folder
+WORKDIR /app
+
+# install required packages for node image
+
+# copy over package.json files
+COPY package.json /app/
+COPY package-lock.json /app/
+
+# install all depencies
+RUN npm ci && npm cache clean --force
+
+# copy over all files to the work directory
+ADD . /app
+
+# build the project
 RUN npm run build
 
-# Run
-FROM base
-
-ENV PORT=$PORT
-ENV NODE_ENV=production
-
-COPY --from=build /src/.output /src/.output
-# Optional, only needed if you rely on unbundled dependencies
-# COPY --from=build /src/node_modules /src/node_modules
+# start final image
+FROM node:20.18-slim
 
 
+WORKDIR /app
+
+# copy over build files from builder step
+COPY --from=builder /app/.output  app/.output
+COPY --from=builder /app/.nuxt  app/.nuxt
+
+# expose the host and port 3000 to the server
 ENV HOST 0.0.0.0
 EXPOSE 3001
 
+# run the build project with node
 ENTRYPOINT ["node", ".output/server/index.mjs"]
