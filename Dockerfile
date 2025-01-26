@@ -1,15 +1,31 @@
-FROM node:20.18-slim
+ARG NODE_VERSION=20.18.0
 
-WORKDIR /app
+FROM node:${NODE_VERSION}-slim as base
 
-COPY package.json /app/
-COPY yarn.lock /app/
+ARG PORT=3000
 
-ADD . /app
+WORKDIR /src
 
-RUN yarn 
+# Build
+FROM base as build
 
-RUN yarn build
+COPY --link package.json package-lock.json .
+RUN npm install
+
+COPY --link . .
+
+RUN npm run build
+
+# Run
+FROM base
+
+ENV PORT=$PORT
+ENV NODE_ENV=production
+
+COPY --from=build /src/.output /src/.output
+# Optional, only needed if you rely on unbundled dependencies
+# COPY --from=build /src/node_modules /src/node_modules
+
 
 ENV HOST 0.0.0.0
 EXPOSE 3001
