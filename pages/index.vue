@@ -1,11 +1,10 @@
 <template>
     <div class="relative" v-if="status === 'success'">
-        <UiTheHeader :data="data.header?.data" :main="data.main?.data" @openModal="visibleModal = true" />
+        <!-- <UiTheHeader :data="data.header?.data" :main="data.main?.data" @openModal="visibleModal = true" /> -->
         <div class="container flex flex-col gap-3 md:gap-10">
             <SectionsMainWrapper :data="data.main?.data ?? null" :main="data.main?.data" />
             <OrderWrapper :key="'top'" :data="data.sities?.data ?? []" footer :desc="data.order?.data?.Desc ?? ''" />
             <SectionsAboutWrapper :data="data.about?.data" />
-            <!-- <pre>{{ store.getVisible }}</pre> -->
             <SectionsYourWrapper ref="el" :data="data.your?.data ?? null" />
 
             <OrderWrapper :key="'bottom'" :data="data.sities?.data ?? []" footer :desc="data.order?.data?.Desc ?? ''" />
