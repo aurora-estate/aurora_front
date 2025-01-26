@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper inter" ref="target">
-        <div class="flex h-full items-center justify-between gap-6" @click="open = !open">
+        <div class="flex h-full items-center justify-between gap-6 w-full" @click="open = !open">
             <span class="truncate">{{ selected ?? 'Выберите' }}</span>
             <img src="/icons/chevron-bottom.svg" alt="" class="w-[14px]" :class="open ? 'rotate-180' : ''">
         </div>

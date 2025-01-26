@@ -1,19 +1,17 @@
 <template>
     <div class="flex flex-col gap-6">
-        <div class="flex justify-between items-start w-full">
+        <div v-if="!min" class="flex md:flex-row flex-col justify-between items-start w-full">
             <span class="text-[48px] leading-none">Оставить заявку</span>
             <span v-if="footer" class="pt-2">{{ desc }}</span>
         </div>
-        <div class="flex gap-3 items-center w-full justify-between">
-            <div class="flex gap-3 items-center">
+        <div class="grid grid-cols-1 md:flex  gap-3 items-center w-full justify-between">
+            <div v-if="!min" class="grid grid-cols-1 sm:grid-cols-2 md:flex md:flex-wrap gap-3 items-center">
                 <InputsDropdown v-model="activeType" :options="types" :key="0" />
                 <InputsDropdown v-model="activeTypeObject" :options="typesObject" :key="1" />
                 <InputsDropdown v-model="selectSity" :options="data.map(x => x.Name)" :key="2" />
-
                 <InputsNumber v-model="selectMoney" />
                 <InputsPhone v-model="selectNumber" />
             </div>
-
             <ButtonsTransparent @click="sendOrder" title="Оставить заявку" :tg="false" link="/" :wigth="true" black />
         </div>
     </div>
@@ -36,7 +34,12 @@ defineProps({
         type: String,
         required: false,
         default: '',
-    }
+    },
+    min: {
+        type: Boolean,
+        required: false,
+        default: false,
+    },
 })
 const activeType = ref('Аренда')
 const types = reactive(['Аренда', 'Продажа'])

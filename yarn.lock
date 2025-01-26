@@ -798,6 +798,33 @@
     unimport "^3.14.6"
     untyped "^1.5.2"
 
+"@nuxt/kit@^3.14.159":
+  version "3.15.3"
+  resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-3.15.3.tgz#5ed663c26029f39bd50f730fff1242430626039b"
+  integrity sha512-NRsJ5tE1SxWX+6VAA6QbD4lJlmTN9LuMsb/TioCeevDRBRNQamBmO2hpSIRahHBU9e6S3NxgZp6qymgj5isVdw==
+  dependencies:
+    "@nuxt/schema" "3.15.3"
+    c12 "^2.0.1"
+    consola "^3.4.0"
+    defu "^6.1.4"
+    destr "^2.0.3"
+    globby "^14.0.2"
+    ignore "^7.0.3"
+    jiti "^2.4.2"
+    klona "^2.0.6"
+    knitwork "^1.2.0"
+    mlly "^1.7.4"
+    ohash "^1.1.4"
+    pathe "^2.0.2"
+    pkg-types "^1.3.1"
+    scule "^1.3.0"
+    semver "^7.6.3"
+    std-env "^3.8.0"
+    ufo "^1.5.4"
+    unctx "^2.4.1"
+    unimport "^4.0.0"
+    untyped "^1.5.2"
+
 "@nuxt/schema@3.15.2", "@nuxt/schema@^3.15.0":
   version "3.15.2"
   resolved "https://registry.yarnpkg.com/@nuxt/schema/-/schema-3.15.2.tgz#175df2b6893d93b4998f0bccfb0b0b6f151f620b"
@@ -806,6 +833,16 @@
     consola "^3.4.0"
     defu "^6.1.4"
     pathe "^2.0.1"
+    std-env "^3.8.0"
+
+"@nuxt/schema@3.15.3":
+  version "3.15.3"
+  resolved "https://registry.yarnpkg.com/@nuxt/schema/-/schema-3.15.3.tgz#228dae4ea4a1b406e471aa7cbd53474ec666618a"
+  integrity sha512-Mr6XL8vEhVLuFUAO1ey/R947SMq5cxeQuJeIQFdxTi9Ju6HH8LlbFWZexOU4il+XGBjwhxTOf9jfrF8WvMZBzg==
+  dependencies:
+    consola "^3.4.0"
+    defu "^6.1.4"
+    pathe "^2.0.2"
     std-env "^3.8.0"
 
 "@nuxt/telemetry@^2.6.4":
@@ -3888,6 +3925,14 @@ nuxt-gtag@3.0.2:
     pathe "^1.1.2"
     ufo "^1.5.4"
 
+nuxt-swiper@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/nuxt-swiper/-/nuxt-swiper-2.0.0.tgz#42b541d99e79b8b425e0ae6f82f56c25e56fcb96"
+  integrity sha512-9NJ7ipoo3sBqFOtnYccVjVPuywGqY1vA82R2YinHo/U4Mw8c0Uy/Q+ep7qihLWr/3wZq9BqFOKPuWKw5xKl77Q==
+  dependencies:
+    "@nuxt/kit" "^3.14.159"
+    swiper "^11.1.14"
+
 nuxt-yandex-metrika@^1.2.9:
   version "1.2.9"
   resolved "https://registry.yarnpkg.com/nuxt-yandex-metrika/-/nuxt-yandex-metrika-1.2.9.tgz#721c1560d563ab085f382621a1449d81cb3e6ba9"
@@ -5145,6 +5190,11 @@ svgo@^3.3.2:
     csso "^5.0.5"
     picocolors "^1.0.0"
 
+swiper@^11.1.14:
+  version "11.2.1"
+  resolved "https://registry.yarnpkg.com/swiper/-/swiper-11.2.1.tgz#0f3fcafa30301a1c76e3ef9e85979ac2daeefc18"
+  integrity sha512-62G69+iQRIfUqTmJkWpZDcX891Ra8O9050ckt1/JI2H+0483g+gq0m7gINecDqMtDh2zt5dK+uzBRxGhGOOvQA==
+
 system-architecture@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/system-architecture/-/system-architecture-0.1.0.tgz#71012b3ac141427d97c67c56bc7921af6bff122d"
@@ -5404,6 +5454,26 @@ unimport@^3.13.1, unimport@^3.14.5, unimport@^3.14.6:
     scule "^1.3.0"
     strip-literal "^2.1.1"
     unplugin "^1.16.1"
+
+unimport@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/unimport/-/unimport-4.0.0.tgz#1a2fcd01defd01be0df4c8bb20490369fe7a043b"
+  integrity sha512-FH+yZ36YaVlh0ZjHesP20Q4uL+wL0EqTNxDZcUupsIn6WRYXZAbIYEMDLTaLBpkNVzFpqZXS+am51/HR3ANUNw==
+  dependencies:
+    "@rollup/pluginutils" "^5.1.4"
+    acorn "^8.14.0"
+    escape-string-regexp "^5.0.0"
+    estree-walker "^3.0.3"
+    fast-glob "^3.3.3"
+    local-pkg "^1.0.0"
+    magic-string "^0.30.17"
+    mlly "^1.7.4"
+    pathe "^2.0.2"
+    picomatch "^4.0.2"
+    pkg-types "^1.3.1"
+    scule "^1.3.0"
+    strip-literal "^3.0.0"
+    unplugin "^2.1.2"
 
 universalify@^2.0.0:
   version "2.0.1"

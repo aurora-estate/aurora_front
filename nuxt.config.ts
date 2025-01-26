@@ -3,7 +3,14 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   ssr:false,
-  modules: ['@nuxtjs/tailwindcss', '@vueuse/nuxt', '@pinia/nuxt', 'nuxt-yandex-metrika', 'nuxt-gtag'],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    '@vueuse/nuxt',
+    '@pinia/nuxt',
+    'nuxt-yandex-metrika',
+    'nuxt-gtag',
+    'nuxt-swiper',
+  ],
   yandexMetrika: {
     id: '99644276',
     options: {

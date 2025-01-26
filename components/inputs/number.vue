@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper inter">
-        <div class="flex items-center justify-between gap-6">
-            <input type="text" placeholder="Бюджет" v-model="selected">
+        <div class="flex items-center justify-between gap-2 w-full">
+            <input type="text" placeholder="Бюджет" v-model="selected" class="md:w-[160px]">
             <span class="text-[#212121]">$</span>
         </div>
     </div>

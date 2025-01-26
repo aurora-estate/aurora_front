@@ -56,6 +56,18 @@ export class API {
     });
     return this.fetchData(`/order-config`, params);
   }
+  async getAbout() {
+    const params = qs.stringify({
+      fields: ['Desc'],
+      populate: {
+        Slider:{
+          fields: ['formats','url']
+        },
+     
+      }
+    });
+    return this.fetchData(`/section-about`, params);
+  }
   async getSities() {
     const params = qs.stringify({
      fields: ['Name']

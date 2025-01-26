@@ -1,8 +1,8 @@
 <template>
-    <button class="b_blur inter whitespace-nowrap"
-        :class="[wigth ? 'px-6' : 'px-2', black ? 'button_black' : 'button_transparent']">
+    <button class=" inter whitespace-nowrap text-center anime"
+        :class="[wigth ? 'px-6' : 'px-2', black ? 'button_black' : 'button_transparent', blur ? 'b_blur' : '', white ? '!text-[#212121]' : '']">
         <img v-if="tg" src="/icons/tg.svg" alt="" class="w-6 h-6">
-        {{ title }}
+        <span v-if="!img_only">{{ title }}</span>
     </button>
 </template>
 
@@ -22,17 +22,27 @@ defineProps({
         type: Boolean,
         default: false,
         required: false
+    },
+    blur: {
+        type: Boolean,
+        default: true,
+        required: false
+    },
+    img_only: {
+        type: Boolean,
+        default: false,
+        required: false
     }
 })
 </script>
 
 <style scoped>
 .button_transparent {
-    @apply w-full flex min-w-fit items-center text-white gap-2 border border-[#EEEEEE]/50 rounded-full py-2 font-medium text-sm sm:text-[15px];
+    @apply flex min-w-fit sm:w-auto items-center text-white gap-2 border border-[#EEEEEE]/30 rounded-full py-2 font-medium text-sm sm:text-[15px];
 }
 
 .button_black {
-    @apply flex items-center bg-[#212121] !text-white rounded-full h-[52px] font-medium text-base;
+    @apply flex items-center justify-center bg-[#212121] !text-white rounded-full h-[52px] font-medium text-base;
 }
 
 .b_blur {
