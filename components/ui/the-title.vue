@@ -3,7 +3,7 @@
         <span class="text-[48px] md:text-[64px]  items-start leading-none w-full flex"
             :class="isLeft ? 'md:order-1 justify-start' : 'md:order-2  justify-end'">{{
                 title }}</span>
-        <p :class="isLeft ? 'order-2' : 'order-1'"> {{ desc }}</p>
+        <p :class="isLeft ? 'order-2' : 'order-1'" class="leading-5"> {{ desc }}</p>
     </div>
 </template>
 

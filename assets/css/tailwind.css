@@ -85,6 +85,9 @@
     input:focus-visible {
         outline: none !important;
     }
+    input {
+        background: transparent !important;
+    }
 
     textarea:focus-visible {
         outline: none !important;
@@ -100,7 +103,7 @@
 
 
       .anime2{
-        @apply transition-all duration-[.5s] ease-in-out;
+        @apply transition-all duration-[.25s] ease-in-out;
       }
 
       .scrollbar {

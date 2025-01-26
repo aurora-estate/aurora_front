@@ -4,7 +4,7 @@
         <div v-if="data.blocks_yours?.length"
             class="grid grid-cols-2 md:grid-cols-[repeat(auto-fill,_minmax(306px,_1fr))] w-full gap-3">
             <BlocksCustom v-for="(item, i) in data.blocks_yours" :key="i" :title="item.Title" :desc="item.Desc"
-                :type="item.Type.replace('t-', '')" :img="item.Main_img?.url ?? ''" :isWhite="item.White_bg" />
+                :type="item.Type.replace('t-', '')" :img="item.Main_img?.url ?? ''" :isWhite="item.Color" />
         </div>
     </section>
 </template>

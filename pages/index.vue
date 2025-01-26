@@ -3,14 +3,14 @@
         <UiTheHeader :data="data.header?.data" :main="data.main?.data" @openModal="visibleModal = true" />
         <div class="container flex flex-col gap-3 md:gap-10">
             <SectionsMainWrapper :data="data.main?.data ?? null" :main="data.main?.data" />
-            <OrderWrapper :key="'top'" :data="data.sities?.data ?? []" min />
+            <OrderWrapper :key="'top'" :data="data.sities?.data ?? []" footer :desc="data.order?.data?.Desc ?? ''" />
             <SectionsAboutWrapper :data="data.about?.data" />
             <!-- <pre>{{ store.getVisible }}</pre> -->
             <SectionsYourWrapper ref="el" :data="data.your?.data ?? null" />
 
             <OrderWrapper :key="'bottom'" :data="data.sities?.data ?? []" footer :desc="data.order?.data?.Desc ?? ''" />
         </div>
-        <UiTheFooter />
+        <UiTheFooter :data="data.main?.data ?? null"/>
         <Transition name="fade">
             <Teleport v-if="visibleModal" to="body">
                 <div class="w-screen h-screen fixed top-0 left-0 z-[999] flex justify-center items-center">
@@ -29,15 +29,15 @@
                         </div>
                         <div
                             class="grid grid-cols-1 md:flex  gap-3 items-center  justify-between w-full max-w-[830px] drop-shadow-2xl">
-                            <div class="grid md:grid-cols-6  gap-3 items-center">
-                                <InputsDropdown class="col-span-2" v-model="activeType" :options="types" :key="0" />
-                                <InputsDropdown class="col-span-2" v-model="activeTypeObject" :options="typesObject"
+                            <div class="grid grid-cols-1 md:grid-cols-6  gap-3 items-center">
+                                <InputsDropdown class="md:col-span-2" v-model="activeType" :options="types" :key="0" />
+                                <InputsDropdown class="md:col-span-2" v-model="activeTypeObject" :options="typesObject"
                                     :key="1" />
-                                <InputsDropdown class="col-span-2" v-model="selectSity"
+                                <InputsDropdown class="md:col-span-2" v-model="selectSity"
                                     :options="data.sities?.data?.map(x => x.Name)" :key="2" />
-                                <InputsNumber class="col-span-3" v-model="selectMoney" />
-                                <InputsPhone class="col-span-3" v-model="selectNumber" />
-                                <div class="col-span-6 flex">
+                                <InputsNumber class="md:col-span-3" v-model="selectMoney" />
+                                <InputsPhone class="md:col-span-3" v-model="selectNumber" />
+                                <div class="md:col-span-6 flex w-full">
 
                                     <ButtonsTransparent @click="sendOrder" title="Оставить заявку" :tg="false" link="/"
                                         :wigth="true" black :blur="false" />

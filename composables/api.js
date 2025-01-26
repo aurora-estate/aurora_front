@@ -30,10 +30,10 @@ export class API {
       fields: ['id'],
       populate: {
         White: {
-          fields: ['formats']
+          fields: ['formats','url']
         },
         Black: {
-          fields: ['formats']
+          fields: ['formats','url']
         }
       },
       
@@ -44,7 +44,11 @@ export class API {
     const params = qs.stringify({
       fields: ['Main_title'],
       populate: {
-        Header_link:true,
+        Header_link:{
+          populate: {
+            Icon: true
+          }
+        },
         Header_post:true
       }
     });
@@ -79,14 +83,12 @@ export class API {
       fields: ['Desc'],
       populate : {
         blocks_yours : {
-          fields : ['Title','Desc','Type','White_bg'],
+          fields : ['Title','Desc','Type','Color','visibleMobile'],
           populate: {
             Main_img: {
               fields: ['formats','url']
             },
-            Secondary_img: {
-              fields: ['formats','url']
-            }
+            
           }
         }
       }

@@ -1,6 +1,6 @@
 <template>
     <div class="w-full h-[200px] md:h-[306px] flex flex-col   rounded-[10px] relative overflow-hidden"
-        :class="typeCss()">
+        :class="[typeCss(), `bg-[${isWhite}]`]">
         <span class="text-base md:text-[32px] leading-[90%] relative z-[2]">{{ title }}</span>
         <span class="text-sm md:text-lg leading-none font-light relative z-[2]">{{ desc }}</span>
         <img v-if="img?.length" :src="`https://scms.aurora-estate.ge${img}`" alt=""
@@ -30,9 +30,9 @@ const props = defineProps({
         default: null,
     },
     isWhite: {
-        type: Boolean,
+        type: String,
         required: false,
-        default: false,
+        default: '#F7F7F7',
     }
 })
 
@@ -46,12 +46,7 @@ const typeCss = () => {
             return 'img_only'
         case '3':
             return 'text_img'
-        case '4':
-            if (props.isWhite) {
-                return 'isWhite'
-            } else {
-                return 'default'
-            }
+
 
         default:
             return 'default'
@@ -63,11 +58,11 @@ const typeCss = () => {
 
 <style scoped>
 .default {
-    @apply p-6 gap-3 bg-[#F7F7F7] justify-end items-start text-left;
+    @apply p-6 gap-3 justify-end items-start text-left;
 }
 
 .isWhite {
-    @apply p-6 gap-3 bg-white justify-end items-start text-left;
+    @apply p-6 gap-3 justify-end items-start text-left;
 }
 
 .img_only {
@@ -79,7 +74,7 @@ const typeCss = () => {
 }
 
 .text_img {
-    @apply gap-3 p-6 overflow-hidden justify-start items-end text-right bg-[#F7F7F7];
+    @apply gap-3 p-6 overflow-hidden justify-start items-end text-right;
 }
 
 .text_img img {
@@ -87,7 +82,7 @@ const typeCss = () => {
 }
 
 .green {
-    @apply bg-[#C5FF51] p-6 gap-3 justify-start items-center text-center;
+    @apply p-6 gap-3 justify-start items-center text-center;
 }
 
 .green img {

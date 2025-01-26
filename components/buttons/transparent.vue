@@ -1,23 +1,39 @@
 <template>
-    <button class=" inter whitespace-nowrap text-center anime"
-        :class="[wigth ? 'px-6' : 'px-2', black ? 'button_black' : 'button_transparent', blur ? 'b_blur' : '', white ? '!text-[#212121]' : '']">
-        <img v-if="tg" src="/icons/tg.svg" alt="" class="w-6 h-6">
-        <span v-if="!img_only">{{ title }}</span>
+    <button @click="event" class=" inter whitespace-nowrap text-center anime min-h-[42px] cursor-pointer"
+        :class="[wigth ? 'px-6' : 'px-2', black ? 'button_black' : 'button_transparent', blur ? 'b_blur' : '', white ? '!text-[#212121]' : '', nonBorder ? '!border-none' : '']">
+        <img v-if="tg && img?.length" :src="`https://scms.aurora-estate.ge${img}`" alt="" class="w-6 h-6">
+        <span v-if="!img_only" :class="tg ? 'pr-1' : ''">{{ title }}</span>
     </button>
 </template>
 
 <script setup>
-defineProps({
+const props = defineProps({
     title: String,
-    tg: Boolean,
+    tg: {
+        type: Boolean,
+        default: false,
+        required: false
+    },
     link: String,
     wigth: Boolean,
     black: Boolean,
+    img: String,
+    custom: {
+        type: Boolean,
+        default: false,
+        required: false
+    },
     min: {
         type: Boolean,
         default: false,
         required: false
     },
+    nonBorder: {
+        type: Boolean,
+        default: false,
+        required: false
+    },
+
     white: {
         type: Boolean,
         default: false,
@@ -34,6 +50,17 @@ defineProps({
         required: false
     }
 })
+
+
+const emits = defineEmits(['eventTop'])
+
+function event() {
+    if (!props.custom) {
+        window.open(props.link, '_blank');
+    } else {
+        emits('eventTop')
+    }
+}
 </script>
 
 <style scoped>

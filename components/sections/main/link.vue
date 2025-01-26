@@ -1,5 +1,5 @@
 <template>
-    <div class="link l_blur inter">
+    <div class="link l_blur inter" @click="event">
         <div class="flex justify-between w-full items-center">
             <span class="font-normal text-sm">{{ data?.Title }}</span>
             <button>
@@ -13,11 +13,17 @@
 
 <script setup>
 const props = defineProps(['data'])
+
+function event() {
+    if (props.data.Link?.length) {
+        window.open(props.data.Link, '_blank');
+    }
+}
 </script>
 
 <style scoped>
 .link {
-    @apply text-white flex flex-col w-[200px] border border-[#F5F5F5]/5 rounded-[6px] p-2;
+    @apply text-white flex flex-col w-[200px] border border-[#F5F5F5]/5 rounded-[6px] p-2 cursor-pointer;
 }
 
 .l_blur {
