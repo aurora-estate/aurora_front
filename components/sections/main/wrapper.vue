@@ -9,8 +9,7 @@
             </h1>
             <div v-if="data?.Header_post" class="w-full flex flex-col justify-end items-start md:items-end gap-2">
                 <div class="w-full hidden md:flex flex-col justify-end items-end gap-2">
-                    <SectionsMainLink v-for="item, i in data.Header_post.sort(x => x.Desc > x.Desc ? 1 : -1)"
-                        :key="item.id" :data="item" />
+                    <SectionsMainLink v-for="item, i in data.Header_post" :key="item.id" :data="item" />
                 </div>
                 <div class="flex flex-nowrap gap-2 md:hidden overflow-x-auto w-full scrollbar">
                     <ButtonsTransparent v-for="(item, i) in main.Header_link" :key="item.id" :title="item.Title"

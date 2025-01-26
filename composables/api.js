@@ -97,6 +97,6 @@ export class API {
   }
   async getConfig() {
     const params = qs.stringify();
-    return this.fetchData(`/jks`, params);
+    return this.fetchData(`/section-your`, params);
   }
 }
