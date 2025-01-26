@@ -7,23 +7,23 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
     '@pinia/nuxt',
-    // 'nuxt-yandex-metrika',
-    // 'nuxt-gtag',
+    'nuxt-yandex-metrika',
+    'nuxt-gtag',
     'nuxt-swiper',
   ],
-  // yandexMetrika: {
-  //   id: '99644276',
-  //   options: {
-  //     clickmap:true,
-  //     trackLinks:true,
-  //     accurateTrackBounce:true,
-  //     webvisor:true
+  yandexMetrika: {
+    id: '99644276',
+    options: {
+      clickmap:true,
+      trackLinks:true,
+      accurateTrackBounce:true,
+      webvisor:true
 
-  //   },
-  // },
-  // gtag: {
-  //   id: 'G-GTC4MJX3XF'
-  // },
+    },
+  },
+  gtag: {
+    id: 'G-GTC4MJX3XF'
+  },
   runtimeConfig: {
     public: {
       baseURL:
