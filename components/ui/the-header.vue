@@ -1,5 +1,7 @@
 <template>
-    <div class=" container z-[99] anime2 flex items-center " :class="styleHeader">
+
+    <div v-if="data" class=" container z-[99] anime2 flex items-center " :class="styleHeader">
+
         <div class="flex justify-between items-center w-full p-1.5 md:p-6">
             <div class="flex justify-between items-center w-full sm:w-auto px-2 md:px-0">
                 <!-- <pre>{{ data.White.url }}</pre> -->

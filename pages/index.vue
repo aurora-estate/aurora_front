@@ -1,8 +1,9 @@
 <template>
     <div class="relative" v-if="status === 'success'">
-        <!-- <UiTheHeader :data="data.header?.data" :main="data.main?.data" @openModal="visibleModal = true" /> -->
+        <UiTheHeader :data="data?.header?.data" :main="data?.main?.data" @openModal="visibleModal = true" />
         <div class="container flex flex-col gap-3 md:gap-10">
-            <SectionsMainWrapper :data="data.main?.data ?? null" :main="data.main?.data" />
+
+            <SectionsMainWrapper :data="data?.main?.data ?? null" :main="data?.main?.data" />
             <!-- <OrderWrapper :key="'top'" :data="data.sities?.data ?? []" footer :desc="data.order?.data?.Desc ?? ''" /> -->
             <!-- <SectionsAboutWrapper :data="data.about?.data" /> -->
             <!-- <SectionsYourWrapper ref="el" :data="data.your?.data ?? null" /> -->
@@ -57,20 +58,20 @@
 </template>
 
 <script setup>
-import { useStore } from '../store/index'
+// import { useStore } from '../store/index'
 import { API } from '../composables/api'
-import { useElementVisibility } from '@vueuse/core'
-const store = useStore()
+// import { useElementVisibility } from '@vueuse/core'
+// const store = useStore()
 
 const visibleModal = ref(false)
-const el = ref(null)
-const targetIsVisible = useElementVisibility(el)
+// const el = ref(null)
+// const targetIsVisible = useElementVisibility(el)
 
 const api = new API()
 
-watchImmediate(targetIsVisible, (res) => {
-    store.setVisible(res)
-})
+// watchImmediate(targetIsVisible, (res) => {
+//     store.setVisible(res)
+// })
 
 const { data, status, error, refresh } = await useAsyncData('dataApi', async () => {
     const [header, main, about, order, your, sities, config] = await Promise.all([
@@ -88,40 +89,40 @@ const { data, status, error, refresh } = await useAsyncData('dataApi', async () 
 
 
 
-const activeType = ref('Аренда')
-const types = reactive(['Аренда', 'Продажа'])
+// const activeType = ref('Аренда')
+// const types = reactive(['Аренда', 'Продажа'])
 
-const selectSity = ref(null)
-const selectNumber = ref(null)
-const selectMoney = ref(null)
+// const selectSity = ref(null)
+// const selectNumber = ref(null)
+// const selectMoney = ref(null)
 
-const activeTypeObject = ref('Квартира')
-const typesObject = reactive(['Квартира', 'Дом', 'Участок', 'Коммерческая невижимость'])
+// const activeTypeObject = ref('Квартира')
+// const typesObject = reactive(['Квартира', 'Дом', 'Участок', 'Коммерческая невижимость'])
 
 
 
-async function sendOrder() {
-    const formData =
-        'Заявка с сайта' + '\n' +
-        'Тип сделки: ' + activeType.value + '\n' +
-        'Тип недвижимости: ' + activeTypeObject.value + '\n' +
-        'Город: ' + selectSity.value + '\n' +
-        'Бюджет: ' + selectMoney.value + '\n' +
-        'Номер: ' + selectNumber.value
+// async function sendOrder() {
+//     const formData =
+//         'Заявка с сайта' + '\n' +
+//         'Тип сделки: ' + activeType.value + '\n' +
+//         'Тип недвижимости: ' + activeTypeObject.value + '\n' +
+//         'Город: ' + selectSity.value + '\n' +
+//         'Бюджет: ' + selectMoney.value + '\n' +
+//         'Номер: ' + selectNumber.value
 
-    const data = {
-        text: formData
-    }
-    console.log(data);
+//     const data = {
+//         text: formData
+//     }
+//     console.log(data);
 
-    await $fetch(
-        'https://api.telegram.org/bot8021336205:AAF2q1B9QXCRsACOdinwT1eddLL3umVRHuM/sendMessage?chat_id=-4650772536',
-        {
-            method: 'POST',
-            body: data
-        }
-    )
-}
+//     await $fetch(
+//         'https://api.telegram.org/bot8021336205:AAF2q1B9QXCRsACOdinwT1eddLL3umVRHuM/sendMessage?chat_id=-4650772536',
+//         {
+//             method: 'POST',
+//             body: data
+//         }
+//     )
+// }
 
 
 </script>
