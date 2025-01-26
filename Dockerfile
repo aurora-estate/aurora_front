@@ -29,16 +29,16 @@ WORKDIR /app
 
 # copy over package.json files
 COPY package.json /app/
-COPY package-lock.json /app/
+COPY yarn.lock /app/
 
 # install all depencies
-RUN npm ci && npm cache clean --force
+RUN yarn 
 
 # copy over all files to the work directory
 ADD . /app
 
 # build the project
-RUN npm run build
+RUN yarn build
 
 # start final image
 FROM node:20.18-slim
