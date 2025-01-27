@@ -16,10 +16,9 @@
             <Teleport v-if="visibleModal" to="body">
                 <div class="w-screen h-screen fixed top-0 left-0 z-[999] flex justify-center items-center">
                     <div class="w-full h-full absolute top-0 left-0 backdrop-blur-sm bg-[#212121]/50 z-[1000]"></div>
-
-                    <div class="bg-white z-[1001] rounded-[10px] p-6 flex flex-col gap-6">
+                    <div class="bg-white z-[1001] rounded-[10px] p-3 md:p-6 flex flex-col">
                         <div class="flex justify-between items-start">
-                            <span class="md:text-[48px] leading-none">Оставить заявку</span>
+                            <div></div>
                             <button @click="visibleModal = false">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
                                     <path fill="none" stroke="currentColor" stroke-linecap="round"
@@ -28,23 +27,9 @@
                                 </svg>
                             </button>
                         </div>
-                        <div
-                            class="grid grid-cols-1 md:flex  gap-3 items-center  justify-between w-full max-w-[830px] drop-shadow-2xl">
-                            <div class="grid grid-cols-1 md:grid-cols-6  gap-3 items-center">
-                                <InputsDropdown class="md:col-span-2" v-model="activeType" :options="types" :key="0" />
-                                <InputsDropdown class="md:col-span-2" v-model="activeTypeObject" :options="typesObject"
-                                    :key="1" />
-                                <InputsDropdown class="md:col-span-2" v-model="selectSity"
-                                    :options="data.sities?.data?.map(x => x.Name)" :key="2" />
-                                <InputsNumber class="md:col-span-3" v-model="selectMoney" />
-                                <InputsPhone class="md:col-span-3" v-model="selectNumber" />
-                                <div class="md:col-span-6 flex w-full">
-
-                                    <ButtonsTransparent @click="sendOrder" title="Оставить заявку" :tg="false" link="/"
-                                        :wigth="true" black :blur="false" />
-                                </div>
-
-                            </div>
+                        <div class="max-w-[400px]">
+                            <OrderWrapper :key="'top'" :data="data?.sities?.data ?? []" footer
+                                :desc="data?.order?.data?.Desc ?? ''" modal />
 
 
 

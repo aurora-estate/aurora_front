@@ -1,6 +1,6 @@
 <template>
     <div class="w-full h-[200px] md:h-[306px] flex flex-col   rounded-[10px] relative overflow-hidden"
-        :class="[typeCss(), `bg-[${isWhite}]`]">
+        :class="[typeCss(), `bg-[${isWhite}]`, title?.length || desc?.length ? 'p-6' : '']">
         <span class="text-base md:text-[32px] leading-[90%] relative z-[2]">{{ title }}</span>
         <span class="text-sm md:text-lg leading-none font-light relative z-[2]">{{ desc }}</span>
         <img v-if="img?.length" :src="`https://scms.aurora-estate.ge${img}`" alt=""
@@ -41,15 +41,35 @@ const props = defineProps({
 const typeCss = () => {
     switch (props.type) {
         case '1':
-            return 'green'
-        case '2':
-            return 'img_only'
-        case '3':
-            return 'text_img'
+            if (props.type?.length && props.desc?.length) {
+                return 't1'
+            } else {
+                return ''
+            }
 
+        case '2':
+            if (props.type?.length && props.desc?.length) {
+                return 't2'
+            } else {
+                return ''
+            }
+
+        case '3':
+            if (props.type?.length && props.desc?.length) {
+                return 't3'
+            } else {
+                return ''
+            }
+
+        case '4':
+            if (props.type?.length && props.desc?.length) {
+                return 't4'
+            } else {
+                return ''
+            }
 
         default:
-            return 'default'
+            return 't1'
     }
 
 }
@@ -57,35 +77,35 @@ const typeCss = () => {
 </script>
 
 <style scoped>
-.default {
-    @apply p-6 gap-3 justify-end items-start text-left;
+.t1 {
+    @apply gap-3 justify-start items-center text-center;
 }
 
-.isWhite {
-    @apply p-6 gap-3 justify-end items-start text-left;
+.t1 img {
+    @apply absolute bottom-0 left-0;
 }
 
-.img_only {
-    @apply overflow-hidden rounded-[10px];
+.t2 {
+    @apply gap-3 justify-end items-start text-left;
 }
 
-.img_only img {
-    @apply min-h-full rounded-[10px];
+.t2 img {
+    @apply absolute bottom-0 left-0;
 }
 
-.text_img {
-    @apply gap-3 p-6 overflow-hidden justify-start items-end text-right;
+.t3 {
+    @apply gap-3 overflow-hidden justify-start items-end text-right;
 }
 
-.text_img img {
-    @apply !h-[200px] absolute bottom-0 left-0;
+.t3 img {
+    @apply absolute bottom-0 left-0;
 }
 
-.green {
-    @apply p-6 gap-3 justify-start items-center text-center;
+.t4 {
+    @apply gap-3 justify-start items-start text-left;
 }
 
-.green img {
-    @apply !h-[130px] absolute bottom-0 left-0;
+.t5 {
+    @apply gap-3 justify-end items-start text-left;
 }
 </style>

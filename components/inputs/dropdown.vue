@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper inter" ref="target">
         <div class="flex h-full items-center justify-between gap-6 w-full" @click="open = !open">
-            <span class="truncate">{{ selected ?? 'Выберите' }}</span>
+            <span class="truncate">{{ selected ?? 'Город' }}</span>
             <img src="/icons/chevron-bottom.svg" alt="" class="w-[14px]" :class="open ? 'rotate-180' : ''">
         </div>
         <Transition name="fade" mode="out-in">
@@ -46,6 +46,6 @@ onClickOutside(target, event => {
 
 <style scoped>
 .wrapper {
-    @apply relative bg-transparent rounded-full border border-neutral-400 h-[52px] flex items-center px-4 cursor-pointer text-[#212121];
+    @apply relative bg-transparent rounded-full border border-neutral-300 h-[52px] flex items-center px-4 cursor-pointer text-[#212121];
 }
 </style>

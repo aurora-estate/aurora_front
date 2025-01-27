@@ -92,6 +92,9 @@
     textarea:focus-visible {
         outline: none !important;
     }
+    :focus-visible {
+        outline: none !important;
+      }
 
     .inter {
         font-family: 'Inter' !important;
@@ -117,12 +120,29 @@
         height: 0;
   }
 
+  input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
   .vue-tel-input {
     border-radius: 9999px !important;
     
-    border: 1px solid #bbb !important;
+    border: none !important;
 
     height: 52px !important;
+  }
+
+
+  .vue-tel-input:focus-within {
+    box-shadow: none !important;
+    border-color: rgb(33, 33, 33) !important;
   }
   
   
