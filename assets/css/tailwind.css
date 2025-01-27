@@ -137,6 +137,22 @@ input[type=number] {
     border: none !important;
 
     height: 52px !important;
+    font-family: 'Inter' !important;
+  }
+  .vti__dropdown-list {
+    z-index: 99 !important;
+
+  }
+  .vti__dropdown-item {
+    cursor: pointer;
+    padding: 8px !important;
+    font-weight: 400 !important;
+  }
+  .vti__dropdown.open {
+    background-color: transparent !important;
+  }
+  .vti__dropdown:hover {
+    background-color: transparent !important;
   }
 
 

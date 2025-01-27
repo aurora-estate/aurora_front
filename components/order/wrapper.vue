@@ -14,7 +14,7 @@
                 <InputsDropdown v-model="selectSity" :options="data.map(x => x.Name)" :key="2" />
                 <InputsNumber v-model="selectMoney" :valid="validMoney" :showError="visibleError && !validMoney" />
 
-                <div class="rounded-full border "
+                <div class="rounded-full border"
                     :class="visibleError && !validPhone ? 'border-red-500' : 'border-neutral-300'">
                     <vue-tel-input v-model="selectNumber" @validate="setValidPhone"
                         placeholder="Номер телефона"></vue-tel-input>
