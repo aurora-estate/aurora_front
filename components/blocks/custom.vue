@@ -5,7 +5,7 @@
         :style="{backgroundColor: isWhite}"
     >
         <span class="text-base md:text-[32px] leading-[90%] relative z-[2]">{{ title }}</span>
-        <span class="text-sm md:text-lg md:leading-none font-light relative z-[2]">{{ desc }}</span>
+        <span class="text-sm md:text-lg leading-none md:leading-none font-light relative z-[2]">{{ desc }}</span>
         <img
             v-if="img?.length"
             :src="`https://scms.aurora-estate.ge${img}`"
