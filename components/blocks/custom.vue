@@ -1,11 +1,19 @@
 <template>
-    <div class="w-full h-[200px] md:h-[306px] flex flex-col   rounded-[10px] relative overflow-hidden"
-        :class="[typeCss(), `bg-[${isWhite}]`, title?.length || desc?.length ? 'p-6' : '']">
+    <div
+        class="w-full h-[200px] md:h-[306px] flex flex-col   rounded-[10px] relative overflow-hidden"
+        :class="[typeCss(), title?.length || desc?.length ? 'p-6' : '']"
+        :style="{backgroundColor: isWhite}"
+    >
         <span class="text-base md:text-[32px] leading-[90%] relative z-[2]">{{ title }}</span>
-        <span class="text-sm md:text-lg leading-none font-light relative z-[2]">{{ desc }}</span>
-        <img v-if="img?.length" :src="`https://scms.aurora-estate.ge${img}`" alt=""
-            class="w-full z-[1] h-full object-cover">
+        <span class="text-sm md:text-lg md:leading-none font-light relative z-[2]">{{ desc }}</span>
+        <img
+            v-if="img?.length"
+            :src="`https://scms.aurora-estate.ge${img}`"
+            alt=""
+            class="w-full z-[1] h-full object-cover"
+        >
     </div>
+
 </template>
 
 <script setup>
