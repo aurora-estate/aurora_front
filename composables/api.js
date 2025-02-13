@@ -5,7 +5,7 @@ import qs from "qs";
 // import {useStore} from "@/store";
 
 export class API {
-  config = useRuntimeConfig().public.baseURL + "/api";
+  config = useRuntimeConfig().public.apiBaseURL + "/api";
 
   constructor() {}
 

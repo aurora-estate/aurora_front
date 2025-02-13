@@ -7,12 +7,10 @@
     >
         <div class="flex justify-between w-full items-center">
             <span class="font-normal text-sm">{{ data?.Title }}</span>
-            <button>
-                <img
-                    src="/icons/arrow-top-rigth.svg"
-                    alt=""
-                >
-            </button>
+            <img
+                src="/icons/arrow-top-rigth.svg"
+                alt=""
+            >
         </div>
 
         <span

@@ -154,7 +154,7 @@ async function sendOrder() {
 }
 
 useHead({
-    title: headMeta.metaTitle,
+    title: headMeta.metaTitle || 'Aurora Estate',
     meta: [
         { name: 'description', content: headMeta.metaDescription },
         { name: 'keywords', content: headMeta.metaKeywords },
@@ -165,8 +165,6 @@ useHead({
         ...metaTags
     ],
     link: [
-        { rel: 'icon', type: 'image/png', href: '/favicon.ico' },
-        { rel: 'apple-touch-icon', sizes: '180x180', href: '/favicon.ico' },
         ...linkTags
     ],
 })

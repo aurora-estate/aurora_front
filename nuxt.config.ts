@@ -12,6 +12,7 @@ export default defineNuxtConfig({
         "nuxt-swiper",
         "@nuxtjs/strapi",
         "@nuxtjs/seo",
+        "@nuxtjs/sitemap",
     ],
     yandexMetrika: {
         id: "99644276",
@@ -27,15 +28,45 @@ export default defineNuxtConfig({
     },
     app: {
         head: {
-            titleTemplate: '', // Убирает суффикс
-        }
+            titleTemplate: "", // Убирает суффикс
+            htmlAttrs: {
+                lang: "ru",
+            },
+            link: [
+                { rel: "icon", type: "image/png", href: "/favicon.ico" },
+                {
+                    rel: "apple-touch-icon",
+                    sizes: "180x180",
+                    href: "/favicon.ico",
+                },
+            ],
+            meta: [{ name: "robots", content: "index, follow" }],
+        },
+    },
+    sitemap: {
+        hostname:
+            process.env.STATE_ENV == "dev"
+                ? "http://localhost:3000"
+                : "https://aurora-estate.ge", // Укажите ваш домен
+        routes: [
+            "/", // Главная страница
+        ],
+    },
+    nitro: {
+        prerender: {
+            routes: ["/sitemap.xml", "/robots.txt"],
+        },
     },
     runtimeConfig: {
         public: {
-            baseURL:
+            apiBaseURL:
                 process.env.STATE_ENV == "dev"
                     ? "http://localhost:1337"
                     : "https://scms.aurora-estate.ge",
+            frontendBaseURL:
+                process.env.STATE_ENV == "dev"
+                    ? "http://localhost:3000"
+                    : "https://aurora-estate.ge",
         },
     },
 });
