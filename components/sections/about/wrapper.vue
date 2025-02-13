@@ -10,9 +10,9 @@
             <div class="grid grid-cols-1 md:grid-cols-2 w-full gap-3">
                 <BlocksDefault :key="991" isSlider>
                     <div v-if="isMounted && data?.Slider?.length" class="w-full md:h-full">
-                        <swiper-container ref="containerRef" :loop="true" class="swiper-basic" :pagination="true">
+                        <swiper-container ref="containerRef" :loop="true" :autoplay="{delay: 5000}" class="swiper-basic" :pagination="true">
                             <swiper-slide v-for="(slide, idx) in data.Slider" :key="idx" class="h-[180px] md:h-[376px]">
-                                <img :src="`https://scms.aurora-estate.ge${slide.url}`" alt=""
+                                <img :src="getImageUrl(slide.url)" alt=""
                                     class="w-full h-[180px] md:h-[376px] object-cover">
                             </swiper-slide>
                         </swiper-container>
@@ -27,12 +27,13 @@
 </template>
 
 <script setup>
-
+import { getImageUrl } from '~/utils/image'
 // import 'swiper/css/pagination';
 const props = defineProps(['data', 'slides'])
 const containerRef = ref(null)
 
 const isMounted = ref(false)
+
 onMounted(() => {
     setTimeout(() => {
         isMounted.value = true

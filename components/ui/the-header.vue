@@ -5,8 +5,8 @@
         <div class="flex justify-between items-center w-full p-1.5 md:p-6">
             <div class="flex justify-between items-center w-full sm:w-auto px-2 md:px-0">
                 <!-- <pre>{{ data.White.url }}</pre> -->
-                <img :src="`https://scms.aurora-estate.ge${styleHeader !== 'style_white' ? data.White.url : data.Black.url}`"
-                    alt="" class="w-[110px] md:w-[160px] h-auto min-h-10">
+                <img :src="logoUrl"
+                    alt="" class="w-[150px] md:w-[160px] h-auto min-h-10">
                 <div v-if="styleHeader === 'style_white'" class="flex md:hidden items-center gap-2">
                     <div v-if="main?.Header_link" class="flex items-center 2">
                         <ButtonsTransparent v-for="(item, i) in main.Header_link" :key="item.id" :title="item.Title"
@@ -31,30 +31,32 @@
 
                 </div>
                 <ButtonsTransparent title="Оставить заявку" :tg="false" :wigth="true"
-                    :white="styleHeader === 'style_white'" custom @event-top="$emit('openModal')" />
+                    :white="styleHeader === 'style_white'" is-button="true" custom @event-top="$emit('openModal')" />
             </div>
         </div>
-
     </div>
 </template>
 
 
 <script setup>
+import { getImageUrl } from '~/utils/image'
 import { useStore } from '../../store/index'
 const props = defineProps(['data', 'main'])
 const store = useStore()
 const scroll = ref(true)
 
+const isVisible = computed(() => store.getVisible)
+const styleHeader = computed(() => (isVisible.value ? 'style_white' : 'style_transparent'))
 
-
-const styleHeader = computed(() => {
-    if (!store.getVisible) {
-        return 'style_transparent'
-    } else {
-        return 'style_white'
-    }
+const logoSrc = computed(() => {
+    return styleHeader.value !== 'style_white' ? props.data.White.url : props.data.Black.url
 })
 
+const logoUrl = ref(getImageUrl(logoSrc.value))
+
+watch(logoSrc, () => {
+    logoUrl.value = getImageUrl(logoSrc.value);
+})
 
 
 </script>
@@ -65,6 +67,7 @@ const styleHeader = computed(() => {
 }
 
 .style_white {
-    @apply w-[calc(100%-28px)] md:w-full bg-[#fff] !text-[#212121] fixed top-3 left-0 right-0 h-[46px] md:h-[80px] border rounded-xl;
+    @apply w-[calc(100%-1rem)] bg-[#fff] !text-[#212121] fixed top-3 left-0 right-0 h-[46px] md:h-[80px] border rounded-xl;
+
 }
 </style>

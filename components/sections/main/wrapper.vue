@@ -1,6 +1,6 @@
 <template>
     <div class="relative w-full h-[600px]">
-        <img src="/Rectangle39.jpg" alt=""
+        <img :src="getImageUrl(main.Main_bg.Main_background.url)" alt=""
             class="absolute top-o left-0 right-0 z-[1] w-full h-[600px] overflow-hidden rounded-xl object-cover">
         <div
             class="z-[2] absolute flex flex-col justify-end md:grid  md:grid-cols-[3fr,2fr] w-full h-full p-6 overflow-hidden rounded-xl">
@@ -24,6 +24,11 @@
 <script setup>
 const props = defineProps(['data', 'main'])
 
+// console.log('main:data', data);
+console.log('main:main', props.main.Main_bg.Main_background.url);
+
+
+import { getImageUrl } from '~/utils/image'
 </script>
 
 <style lang="scss" scoped></style>

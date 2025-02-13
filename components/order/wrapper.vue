@@ -1,28 +1,68 @@
 <template>
     <div class="flex flex-col gap-6">
-        <div v-if="!min" class="flex  flex-col justify-between items-start w-full"
-            :class="[modal ? 'md:flex-col' : 'md:flex-row']">
+        <div
+            v-if="!min"
+            class="flex  flex-col justify-between items-start w-full"
+            :class="[modal ? 'md:flex-col' : 'md:flex-row']"
+        >
             <span class="text-[36px] md:text-[48px] leading-none">Оставить заявку</span>
-            <span v-if="footer" class="pt-2">{{ desc
+            <span
+                v-if="footer"
+                class="pt-2"
+            >{{ desc
                 }}</span>
         </div>
-        <div class="grid grid-cols-1   gap-3 items-center w-full justify-between" :class="[modal ? '' : 'md:flex']">
-            <div v-if="!min" class="grid grid-cols-1  gap-3 items-center"
-                :class="[modal ? '' : 'sm:grid-cols-2 md:flex md:flex-wrap']">
-                <InputsDropdown v-model="activeType" :options="types" :key="0" />
-                <InputsDropdown v-model="activeTypeObject" :options="typesObject" :key="1" />
-                <InputsDropdown v-model="selectSity" :options="data.map(x => x.Name)" :key="2" />
-                <InputsNumber v-model="selectMoney" :valid="validMoney" :showError="visibleError && !validMoney" />
+        <div
+            class="grid grid-cols-1  z-[49]  gap-3 items-center w-full justify-between"
+            :class="[modal ? '' : 'md:flex']"
+        >
+            <div
+                v-if="!min"
+                class="grid grid-cols-1  gap-3 items-center"
+                :class="[modal ? '' : 'sm:grid-cols-2 md:flex md:flex-wrap']"
+            >
+                <InputsDropdown
+                    v-model="activeType"
+                    :options="data.Service_type.map(x => x.Name)"
+                    :key="0"
+                />
+                <InputsDropdown
+                    v-model="activeTypeObject"
+                    :options="data.Object_category.map(x => x.Name)"
+                    :key="1"
+                />
+                <InputsDropdown
+                    v-model="selectSity"
+                    :options="data.City.map(x => x.Name)"
+                    :key="2"
+                />
+                <InputsNumber
+                    v-model="selectMoney"
+                    :valid="validMoney"
+                    :showError="visibleError && !validMoney"
+                />
 
-                <div class="rounded-full border"
-                    :class="visibleError && !validPhone ? 'border-red-500' : 'border-neutral-300'">
-                    <vue-tel-input v-model="selectNumber" @validate="setValidPhone"
-                        placeholder="Номер телефона"></vue-tel-input>
+                <div
+                    class="rounded-full border"
+                    :class="visibleError && !validPhone ? 'border-red-500' : 'border-neutral-300'"
+                >
+                    <label>
+                        <InputsPhone />
+                    </label>
                 </div>
+
 
                 <!-- <InputsPhone v-model="selectNumber" /> -->
             </div>
-            <ButtonsTransparent @eventTop="sendOrder" title="Оставить заявку" :tg="false" :wigth="true" black custom />
+            <ButtonsTransparent
+                @eventTop="sendOrder"
+                title="Оставить заявку"
+                :tg="false"
+                :wigth="true"
+                black
+                custom
+                isButton
+            />
         </div>
     </div>
 </template>

@@ -13,10 +13,6 @@
 
 const props = defineProps(['data'])
 
-
-
-
-
 const blocks = ref([
     {
         title: 'Тщательный отбор',
