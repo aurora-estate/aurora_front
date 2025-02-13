@@ -10,6 +10,8 @@ export default defineNuxtConfig({
         "nuxt-yandex-metrika",
         "nuxt-gtag",
         "nuxt-swiper",
+        "@nuxtjs/strapi",
+        "@nuxtjs/seo",
     ],
     yandexMetrika: {
         id: "99644276",
@@ -22,6 +24,11 @@ export default defineNuxtConfig({
     },
     gtag: {
         id: "G-GTC4MJX3XF",
+    },
+    app: {
+        head: {
+            titleTemplate: '', // Убирает суффикс
+        }
     },
     runtimeConfig: {
         public: {

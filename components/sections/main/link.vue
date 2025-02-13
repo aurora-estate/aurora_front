@@ -1,14 +1,25 @@
 <template>
-    <div class="link l_blur inter" @click="event">
+    <a
+        class="link l_blur inter"
+        :href="data.Link"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
         <div class="flex justify-between w-full items-center">
             <span class="font-normal text-sm">{{ data?.Title }}</span>
             <button>
-                <img src="/icons/arrow-top-rigth.svg" alt="">
+                <img
+                    src="/icons/arrow-top-rigth.svg"
+                    alt=""
+                >
             </button>
         </div>
 
-        <span v-if="data.Desc?.length" class="font-medium">{{ data?.Desc }}</span>
-    </div>
+        <span
+            v-if="data.Desc?.length"
+            class="font-medium"
+        >{{ data?.Desc }}</span>
+    </a>
 </template>
 
 <script setup>

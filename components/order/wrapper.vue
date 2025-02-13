@@ -59,6 +59,7 @@
                 :wigth="true"
                 black
                 custom
+                isButton
             />
         </div>
     </div>

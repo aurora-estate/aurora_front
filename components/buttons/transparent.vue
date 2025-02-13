@@ -1,9 +1,40 @@
 <template>
-    <button @click="event" class=" inter whitespace-nowrap text-center anime min-h-[42px] cursor-pointer"
-        :class="[wigth ? 'px-6' : 'px-2', black ? 'button_black' : 'button_transparent', blur ? 'b_blur' : '', white ? '!text-[#212121]' : '', nonBorder ? '!border-none' : '']">
-        <img v-if="tg && img?.length" :src="getImageUrl(img)" alt="" class="w-6 h-6">
-        <span v-if="!img_only" :class="tg ? 'pr-1' : ''">{{ title }}</span>
+    <button
+        v-if="isButton"
+        @click="event"
+        class=" inter whitespace-nowrap text-center anime min-h-[42px] cursor-pointer"
+        :class="[wigth ? 'px-6' : 'px-2', black ? 'button_black' : 'button_transparent', blur ? 'b_blur' : '', white ? '!text-[#212121]' : '', nonBorder ? '!border-none' : '']"
+    >
+        <img
+            v-if="tg && img?.length"
+            :src="getImageUrl(img)"
+            alt=""
+            class="w-6 h-6"
+        >
+        <span
+            v-if="!img_only"
+            :class="tg ? 'pr-1' : ''"
+        >{{ title }}</span>
     </button>
+    <a
+        v-else
+        :href="link"
+        target="_blank"
+        rel="noopener noreferrer"
+        class=" inter whitespace-nowrap text-center anime min-h-[42px] cursor-pointer"
+        :class="[wigth ? 'px-6' : 'px-2', black ? 'button_black' : 'button_transparent', blur ? 'b_blur' : '', white ? '!text-[#212121]' : '', nonBorder ? '!border-none' : '']"
+    >
+        <img
+            v-if="tg && img?.length"
+            :src="getImageUrl(img)"
+            alt=""
+            class="w-6 h-6"
+        >
+        <span
+            v-if="!img_only"
+            :class="tg ? 'pr-1' : ''"
+        >{{ title }}</span>
+    </a>
 </template>
 
 <script setup>
@@ -16,6 +47,7 @@ const props = defineProps({
         required: false
     },
     link: String,
+    isButton: Boolean,
     wigth: Boolean,
     black: Boolean,
     img: String,

@@ -31,7 +31,7 @@
 
                 </div>
                 <ButtonsTransparent title="Оставить заявку" :tg="false" :wigth="true"
-                    :white="styleHeader === 'style_white'" custom @event-top="$emit('openModal')" />
+                    :white="styleHeader === 'style_white'" is-button="true" custom @event-top="$emit('openModal')" />
             </div>
         </div>
     </div>

@@ -112,9 +112,6 @@ const { data, status, error, refresh } = await useAsyncData('dataApi', async () 
     return { header, main, about, order, your, config, seo }
 })
 
-console.log('mainSeoData:', data.value.seo.data);
-
-
 const activeType = ref('Аренда')
 const types = reactive(['Аренда', 'Продажа'])
 
@@ -125,6 +122,12 @@ const selectMoney = ref(null)
 const activeTypeObject = ref('Квартира')
 const typesObject = reactive(['Квартира', 'Дом', 'Участок', 'Коммерческая невижимость'])
 
+const headMeta = data.value.seo.data;
+// Разделяем meta и link теги
+const metaTags = headMeta.customMetaTags.filter(tag => tag.tag === 'meta').map(tag => tag.attributes) || [];
+const linkTags = headMeta.customMetaTags.filter(tag => tag.tag === 'link').map(tag => tag.attributes) || [];
+
+console.log('headMeta', headMeta);
 
 
 async function sendOrder() {
@@ -151,15 +154,21 @@ async function sendOrder() {
 }
 
 useHead({
-    title: data.value.seo.data.metaTitle || 'Estate Aurora',
+    title: headMeta.metaTitle,
     meta: [
-        { name: 'description', content: data.value.seo.data.metaDescription },
-        { name: 'keywords', content: data.value.seo.data.metaKeywords },
+        { name: 'description', content: headMeta.metaDescription },
+        { name: 'keywords', content: headMeta.metaKeywords },
+        { name: 'robots', content: 'index, follow' },
+        { httpEquiv: 'Content-Language', content: 'ru' },
+        { name: 'language', content: 'Russian' },
+        { name: 'author', content: 'Aurora Estate Georgia' },
+        ...metaTags
     ],
     link: [
         { rel: 'icon', type: 'image/png', href: '/favicon.ico' },
-        { rel: 'apple-touch-icon', sizes: '180x180', href: '/favicon.ico' }
-    ]
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/favicon.ico' },
+        ...linkTags
+    ],
 })
 </script>
 
