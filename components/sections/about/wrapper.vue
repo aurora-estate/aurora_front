@@ -12,7 +12,7 @@
                     <div v-if="isMounted && data?.Slider?.length" class="w-full md:h-full">
                         <swiper-container ref="containerRef" :loop="true" :autoplay="{delay: 5000}" class="swiper-basic" :pagination="true">
                             <swiper-slide v-for="(slide, idx) in data.Slider" :key="idx" class="h-[180px] md:h-[376px]">
-                                <img :src="`https://scms.aurora-estate.ge${slide.url}`" alt=""
+                                <img :src="getImageUrl(slide.url)" alt=""
                                     class="w-full h-[180px] md:h-[376px] object-cover">
                             </swiper-slide>
                         </swiper-container>
@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-
+import { getImageUrl } from '~/utils/image'
 // import 'swiper/css/pagination';
 const props = defineProps(['data', 'slides'])
 const containerRef = ref(null)

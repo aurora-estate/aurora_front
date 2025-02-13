@@ -122,6 +122,9 @@ const phoneValue = computed(() => {
     align-items: center;
     min-height: 44px;
 }
+.vti__dropdown-item strong {
+    font-weight: regular !important;
+}
 
 .arrow-icon svg {
     width: 18px;

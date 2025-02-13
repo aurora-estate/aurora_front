@@ -8,7 +8,7 @@
         <span class="text-sm md:text-lg leading-none md:leading-none font-light relative z-[2]">{{ desc }}</span>
         <img
             v-if="img?.length"
-            :src="`https://scms.aurora-estate.ge${img}`"
+            :src="getImageUrl(img)"
             alt=""
             class="w-full z-[1] h-full object-cover"
         >
@@ -17,6 +17,7 @@
 </template>
 
 <script setup>
+import { getImageUrl } from '@/utils/image';
 const props = defineProps({
     title: {
         type: String,
@@ -43,8 +44,6 @@ const props = defineProps({
         default: '#F7F7F7',
     }
 })
-
-
 
 const typeCss = () => {
     switch (props.type) {

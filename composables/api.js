@@ -1,4 +1,5 @@
 
+import { populate } from "dotenv";
 import qs from "qs";
 
 // import {useStore} from "@/store";
@@ -49,14 +50,26 @@ export class API {
             Icon: true
           }
         },
-        Header_post:true
+        Header_post:true,
+        Main_bg: {
+          populate: {
+            Main_background: {
+              fields: ['url', 'formats', 'width', 'height', 'alternativeText']
+            }
+          }
+        }
       }
     });
     return this.fetchData(`/section-main`, params);
   }
   async getOrder() {
     const params = qs.stringify({
-      fields: ['Desc']
+      fields: ['Desc'],
+      populate: {
+        City:true,
+        Service_type:true,
+        Object_category: true
+      }
     });
     return this.fetchData(`/order-config`, params);
   }
@@ -71,12 +84,6 @@ export class API {
       }
     });
     return this.fetchData(`/section-about`, params);
-  }
-  async getSities() {
-    const params = qs.stringify({
-     fields: ['Name']
-    });
-    return this.fetchData(`/sities`, params);
   }
   async getYour() {
     const params = qs.stringify({
@@ -94,6 +101,12 @@ export class API {
       }
     });
     return this.fetchData(`/section-your`, params);
+  }
+  async getSeoData() {
+    const params = qs.stringify({
+      fields: ['metaTitle', 'metaDescription', 'metaKeywords', 'customMetaTags'],
+    })
+    return this.fetchData('/page-seo', params)
   }
   async getConfig() {
     const params = qs.stringify();

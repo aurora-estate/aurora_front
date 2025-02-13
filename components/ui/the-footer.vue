@@ -1,5 +1,5 @@
 <template>
-    <footer class=" container mt-10">
+    <footer class=" container mt-10 ps-0 pe-0">
         <div
             class="bg-[#212121] rounded-[10px] p-6 text-white flex gap-6 md:gap-0 flex-col md:flex-row justify-between w-full h-auto md:h-[200px]">
             <div class="flex flex-col  md:justify-between">

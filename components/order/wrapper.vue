@@ -23,17 +23,17 @@
             >
                 <InputsDropdown
                     v-model="activeType"
-                    :options="types"
+                    :options="data.Service_type.map(x => x.Name)"
                     :key="0"
                 />
                 <InputsDropdown
                     v-model="activeTypeObject"
-                    :options="typesObject"
+                    :options="data.Object_category.map(x => x.Name)"
                     :key="1"
                 />
                 <InputsDropdown
                     v-model="selectSity"
-                    :options="data.map(x => x.Name)"
+                    :options="data.City.map(x => x.Name)"
                     :key="2"
                 />
                 <InputsNumber
