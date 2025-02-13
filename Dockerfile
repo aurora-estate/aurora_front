@@ -1,18 +1,23 @@
 FROM node:20.18-slim
 
-COPY package.json package.json
-COPY yarn.lock yarn.lock 
+# Устанавливаем рабочую директорию
+WORKDIR /app
 
-RUN yarn 
+# Копируем package.json и yarn.lock перед установкой зависимостей
+COPY package.json yarn.lock ./
 
+# Устанавливаем зависимости
+RUN yarn install --frozen-lockfile
+
+# Копируем весь проект в контейнер
 COPY . .
 
-
-
+# Строим проект
 RUN yarn build
 
-ENV HOST 0.0.0.0
+# Указываем хост и порт
+ENV HOST=0.0.0.0
 EXPOSE 3000
 
-ENTRYPOINT ["node", ".output/server/index.mjs"]
-
+# Запускаем сервер
+CMD ["node", ".output/server/index.mjs"]
