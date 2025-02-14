@@ -46,9 +46,7 @@
                     class="rounded-full border"
                     :class="visibleError && !validPhone ? 'border-red-500' : 'border-neutral-300'"
                 >
-                    <label>
-                        <InputsPhone />
-                    </label>
+                    <InputsPhone />
                 </div>
 
 

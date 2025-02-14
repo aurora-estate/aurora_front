@@ -15,7 +15,6 @@
                 </div>
             </template>
         </vue-tel-input>
-
     </div>
 </template>
 
