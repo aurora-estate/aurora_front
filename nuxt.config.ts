@@ -28,7 +28,6 @@ export default defineNuxtConfig({
     },
     app: {
         head: {
-            titleTemplate: "", // Убирает суффикс
             htmlAttrs: {
                 lang: "ru",
             },
@@ -40,7 +39,10 @@ export default defineNuxtConfig({
                     href: "/favicon.ico",
                 },
             ],
-            meta: [{ name: "robots", content: "index, follow" }],
+            meta: [
+                { name: "robots", content: "index, follow" },
+                { property: "og:site_name", content: "" },
+            ],
         },
     },
     sitemap: {
