@@ -3,15 +3,10 @@ export default defineEventHandler(async (event) => {
 
     const config = useRuntimeConfig(event);
 
-    const result = `
-    User-Agent: *
-    Allow: /
-    Allow: /about
-    
-    Disallow: /prices
-    
-    Sitemap: ${config.public.frontendBaseURL}/sitemap.xml
-    Host: ${config.public.frontendBaseURL}
-    `
+    console.log('Frontend Base URL:', config.public.frontendBaseURL);
+    const result = `User-Agent: *
+Allow: /
+Sitemap: ${config.public.frontendBaseURL}/sitemap.xml
+Host: ${config.public.frontendBaseURL}/`
     return result
 })

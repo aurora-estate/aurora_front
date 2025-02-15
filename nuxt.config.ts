@@ -4,15 +4,26 @@ export default defineNuxtConfig({
     devtools: { enabled: false },
     ssr: true, // Включает SSR
     modules: [
-        "@nuxtjs/tailwindcss",
-        "@vueuse/nuxt",
-        "@pinia/nuxt",
-        "nuxt-yandex-metrika",
-        "nuxt-gtag",
-        "nuxt-swiper",
-        "@nuxtjs/strapi",
-        "@nuxtjs/seo",
+      "@nuxtjs/tailwindcss",
+      "@vueuse/nuxt",
+      "@pinia/nuxt",
+      "nuxt-yandex-metrika",
+      "nuxt-gtag",
+      "nuxt-swiper",
+      "@nuxtjs/strapi",
+      "@nuxtjs/seo",
+      "@nuxtjs/robots",
+      "@nuxtjs/sitemap",
     ],
+    robots: {
+        // provide simple disallow rules for all robots `user-agent: *`
+        disallow: ["/secret", "/admin"],
+        allow: "/",
+    },
+    site: {
+        url: "https://aurora-estate.ge",
+        name: "Aurora Estate",
+    },
     yandexMetrika: {
         id: "99644276",
         options: {
@@ -24,6 +35,9 @@ export default defineNuxtConfig({
     },
     gtag: {
         id: "G-GTC4MJX3XF",
+    },
+    sitemap: {
+        hostname: 'https://aurora-estate.ge',
     },
     app: {
         head: {
@@ -46,7 +60,7 @@ export default defineNuxtConfig({
     },
     nitro: {
         prerender: {
-            routes: ["/sitemap.xml", "/robots.txt"],
+            routes: ["/robots.txt"],
         },
     },
     runtimeConfig: {
