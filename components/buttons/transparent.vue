@@ -1,9 +1,9 @@
 <template>
     <button
-        v-if="isButton"
+        v-if="isButton && !isLoading"
         @click="event"
         class=" inter whitespace-nowrap text-center anime min-h-[42px] cursor-pointer"
-        :class="[wigth ? 'px-6' : 'px-2', black ? 'button_black' : 'button_transparent', blur ? 'b_blur' : '', white ? '!text-[#212121]' : '', nonBorder ? '!border-none' : '']"
+        :class="[wigth ? 'px-6' : 'px-2', black ? 'button_black' : 'button_transparent', blur ? 'b_blur' : '', white ? '!text-[#212121]' : '', nonBorder ? '!border-none' : '', wFull ? 'w-full' : '']"
     >
         <img
             v-if="tg && img?.length"
@@ -12,7 +12,28 @@
             class="w-6 h-6"
         >
         <span
-            v-if="!img_only"
+            v-else-if="!img_only && title"
+            :class="tg ? 'pr-1' : ''"
+        >{{ title }}</span>
+    </button>
+    <div
+    v-else-if="isLoading"
+    class="h-8 w-8 border-4 border-black border-t-transparent rounded-full animate-spin my-1"
+    ></div>
+    <button
+        v-else-if="isModalButton"
+        @click="$emit('close-message-modal')"
+        class=" inter whitespace-nowrap text-center anime min-h-[42px] cursor-pointer"
+        :class="[wigth ? 'px-6' : 'px-2', black ? 'button_black' : 'button_transparent', blur ? 'b_blur' : '', white ? '!text-[#212121]' : '', nonBorder ? '!border-none' : '', wFull ? 'w-full' : '']"
+    >
+        <img
+            v-if="tg && img?.length"
+            :src="getImageUrl(img)"
+            alt=""
+            class="w-6 h-6"
+        >
+        <span
+            v-else-if="!img_only && title"
             :class="tg ? 'pr-1' : ''"
         >{{ title }}</span>
     </button>
@@ -81,11 +102,26 @@ const props = defineProps({
         type: Boolean,
         default: false,
         required: false
+    },
+    wFull: {
+        type: Boolean,
+        default: false,
+        required: false
+    },
+    isModalButton: {
+        type: Boolean,
+        default: false,
+        required: false
+    },
+    isLoading: {
+        type: Boolean,
+        default: false,
+        required: false
     }
 })
 
 
-const emits = defineEmits(['eventTop'])
+const emits = defineEmits(['eventTop', 'close-message-modal'])
 
 function event() {
     if (!props.custom) {

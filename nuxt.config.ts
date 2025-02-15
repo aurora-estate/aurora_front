@@ -12,7 +12,6 @@ export default defineNuxtConfig({
         "nuxt-swiper",
         "@nuxtjs/strapi",
         "@nuxtjs/seo",
-        "@nuxtjs/sitemap",
     ],
     yandexMetrika: {
         id: "99644276",
@@ -45,15 +44,6 @@ export default defineNuxtConfig({
             ],
         },
     },
-    sitemap: {
-        hostname:
-            process.env.STATE_ENV == "dev"
-                ? "http://localhost:3000"
-                : "https://aurora-estate.ge", // Укажите ваш домен
-        routes: [
-            "/", // Главная страница
-        ],
-    },
     nitro: {
         prerender: {
             routes: ["/sitemap.xml", "/robots.txt"],
@@ -65,10 +55,7 @@ export default defineNuxtConfig({
                 process.env.STATE_ENV == "dev"
                     ? "http://localhost:1337"
                     : "https://scms.aurora-estate.ge",
-            frontendBaseURL:
-                process.env.STATE_ENV == "dev"
-                    ? "http://localhost:3000"
-                    : "https://aurora-estate.ge",
+            frontendBaseURL: "https://aurora-estate.ge",
         },
     },
 });

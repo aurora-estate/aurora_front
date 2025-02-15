@@ -1,17 +1,40 @@
 <template>
-    <div class="phone-input-wrapper">
+    <div
+        class="rounded-full border"
+        :class="showError ? 'border-red-500' : 'border-neutral-300'"
+    >
         <vue-tel-input
             ref="telInputRef"
-            v-model="hiddenPhone"
+            v-model="phone"
             @country-changed="onCountryChanged"
             :validCharactersOnly="true"
             :inputOptions="{ 'showDialCode': true }"
             :dropdownOptions="{ 'showDialCodeInSelection': false, 'showFlags': true, 'showDialCodeInList': true }"
             :mode="international"
+            @validate="validatePhone"
+            @blur="checkValidation"
+            @focus="hideError"
         >
             <template v-slot:arrow-icon="{ open }">
-                <div :class="{'arrow-icon--open': open}" class="arrow-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m19 9l-7 6l-7-6"/></svg>
+                <div
+                    :class="{ 'arrow-icon--open': open }"
+                    class="arrow-icon"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="32"
+                        height="32"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="1.5"
+                            d="m19 9l-7 6l-7-6"
+                        />
+                    </svg>
                 </div>
             </template>
         </vue-tel-input>
@@ -19,46 +42,50 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
-
 const telInputRef = ref(null);
-const hiddenPhone = ref('');
-const selectedCountry = ref(null);
-const selectedCountryCode = ref('');
-const displayPhone = ref('');
 
-const onCountryChanged = (country) => {
-    selectedCountry.value = country;
-    selectedCountryCode.value = country.dialCode;
-    updateDisplayPhone();
-};
-
-const openCountrySelect = () => {
-    telInputRef.value?.focusInput();
-};
-
-const handleInput = (event) => {
-    const rawValue = event.target.value;
-    const numbers = rawValue.replace(/[^0-9]/g, '');
-
-    if (selectedCountryCode.value) {
-        hiddenPhone.value = numbers;
-        updateDisplayPhone();
+const props = defineProps({
+    modal: {
+        type: Boolean,
+        required: false,
+        default: false,
     }
+})
+const emit = defineEmits(['set-valid-phone'])
+const phone = defineModel();
+const isPhoneValid = ref(false);
+const showError = ref(false);
+const isCountryChanged = ref(false);
+
+const validatePhone = (phoneObject) => {
+    isPhoneValid.value = phoneObject.valid; // Обновляем состояние валидности
 };
 
-const updateDisplayPhone = () => {
-    if (hiddenPhone.value && selectedCountryCode.value) {
-        displayPhone.value = `+${selectedCountryCode.value} ${hiddenPhone.value}`;
-    } else {
-        displayPhone.value = hiddenPhone.value;
+const onCountryChanged = () => {
+    if (isCountryChanged.value && telInputRef.value) {
+        telInputRef.value.$el.querySelector('input').focus();
     }
+    isCountryChanged.value = true;
 };
 
-// Если нужно экспортировать значение наружу
-const phoneValue = computed(() => {
-    return hiddenPhone.value ? `+${selectedCountryCode.value}${hiddenPhone.value}` : '';
-});
+const checkValidation = () => {
+    showError.value = !isPhoneValid.value; // Показываем ошибку только после ухода из инпута
+    emit('set-valid-phone', isPhoneValid.value)
+}
+
+const hideError = () => {
+    showError.value = false;
+}
+
+// 🔹 Метод, который вызовет blur у vue-tel-input
+const triggerBlur = () => {
+    telInputRef.value?.$el.querySelector('input')?.blur();
+};
+
+defineExpose({
+    triggerBlur,
+    checkValidation
+})
 </script>
 
 <style>
@@ -112,6 +139,9 @@ const phoneValue = computed(() => {
 .vti__dropdown-list.below {
     top: 58px;
 }
+.vti__dropdown-list.above {
+    bottom: 120%;
+}
 
 .vti__dropdown-item {
     border-radius: 15px;
@@ -121,6 +151,7 @@ const phoneValue = computed(() => {
     align-items: center;
     min-height: 44px;
 }
+
 .vti__dropdown-item strong {
     font-weight: regular !important;
 }
@@ -129,6 +160,7 @@ const phoneValue = computed(() => {
     width: 18px;
     color: #9ea0a3;
 }
+
 .arrow-icon--open {
     transform: rotate(180deg);
 }
