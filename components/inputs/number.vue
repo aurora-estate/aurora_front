@@ -1,9 +1,9 @@
 <template>
     <div class="wrapper inter"
         :class="[focus ? 'border-neutral-800' : 'border-neutral-300', showError ? '!border-red-500' : '']">
-        <div class="flex items-center justify-between gap-2 w-full">
+        <div class="flex items-center justify-between gap-2 w-full h-full">
             <input type="number" ref="inputMoney" placeholder="Бюджет" @keypress="isNumber($event, selected)"
-                v-model="selected" class="w-full md:w-[160px] placeholder:text-[#6C6C6C] ">
+                v-model="selected" class="w-full h-full placeholder:text-[#6C6C6C] ">
             <span class="text-[#212121]">$</span>
         </div>
     </div>

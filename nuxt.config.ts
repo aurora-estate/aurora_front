@@ -4,16 +4,26 @@ export default defineNuxtConfig({
     devtools: { enabled: false },
     ssr: true, // Включает SSR
     modules: [
-        "@nuxtjs/tailwindcss",
-        "@vueuse/nuxt",
-        "@pinia/nuxt",
-        "nuxt-yandex-metrika",
-        "nuxt-gtag",
-        "nuxt-swiper",
-        "@nuxtjs/strapi",
-        "@nuxtjs/seo",
-        "@nuxtjs/sitemap",
+      "@nuxtjs/tailwindcss",
+      "@vueuse/nuxt",
+      "@pinia/nuxt",
+      "nuxt-yandex-metrika",
+      "nuxt-gtag",
+      "nuxt-swiper",
+      "@nuxtjs/strapi",
+      "@nuxtjs/seo",
+      "@nuxtjs/robots",
+      "@nuxtjs/sitemap",
     ],
+    robots: {
+        // provide simple disallow rules for all robots `user-agent: *`
+        disallow: ["/secret", "/admin"],
+        allow: "/",
+    },
+    site: {
+        url: "https://aurora-estate.ge",
+        name: "Aurora Estate",
+    },
     yandexMetrika: {
         id: "99644276",
         options: {
@@ -26,9 +36,11 @@ export default defineNuxtConfig({
     gtag: {
         id: "G-GTC4MJX3XF",
     },
+    sitemap: {
+        hostname: 'https://aurora-estate.ge',
+    },
     app: {
         head: {
-            titleTemplate: "", // Убирает суффикс
             htmlAttrs: {
                 lang: "ru",
             },
@@ -40,21 +52,15 @@ export default defineNuxtConfig({
                     href: "/favicon.ico",
                 },
             ],
-            meta: [{ name: "robots", content: "index, follow" }],
+            meta: [
+                { name: "robots", content: "index, follow" },
+                { property: "og:site_name", content: "" },
+            ],
         },
-    },
-    sitemap: {
-        hostname:
-            process.env.STATE_ENV == "dev"
-                ? "http://localhost:3000"
-                : "https://aurora-estate.ge", // Укажите ваш домен
-        routes: [
-            "/", // Главная страница
-        ],
     },
     nitro: {
         prerender: {
-            routes: ["/sitemap.xml", "/robots.txt"],
+            routes: ["/robots.txt"],
         },
     },
     runtimeConfig: {
@@ -63,10 +69,7 @@ export default defineNuxtConfig({
                 process.env.STATE_ENV == "dev"
                     ? "http://localhost:1337"
                     : "https://scms.aurora-estate.ge",
-            frontendBaseURL:
-                process.env.STATE_ENV == "dev"
-                    ? "http://localhost:3000"
-                    : "https://aurora-estate.ge",
+            frontendBaseURL: "https://aurora-estate.ge",
         },
     },
 });

@@ -14,7 +14,7 @@
                             nonBorder />
 
                     </div>
-                    <button @click="$emit('openModal')"
+                    <button @click="openModal"
                         class="border rounded-full text-[10px] px-3 h-6 flex items-center justify-center">
                         <span class="leading-4"> Оставить
                             заявку</span>
@@ -31,7 +31,7 @@
 
                 </div>
                 <ButtonsTransparent title="Оставить заявку" :tg="false" :wigth="true"
-                    :white="styleHeader === 'style_white'" is-button="true" custom @event-top="$emit('openModal')" />
+                    :white="styleHeader === 'style_white'" is-button="true" custom @event-top="openOrderModal" />
             </div>
         </div>
     </div>
@@ -41,8 +41,10 @@
 <script setup>
 import { getImageUrl } from '~/utils/image'
 import { useStore } from '../../store/index'
+import { useFormStore } from '@/store/form'
+const formStore = useFormStore();
 const props = defineProps(['data', 'main'])
-const store = useStore()
+const store = useStore();
 const scroll = ref(true)
 
 const isVisible = computed(() => store.getVisible)
@@ -53,6 +55,12 @@ const logoSrc = computed(() => {
 })
 
 const logoUrl = ref(getImageUrl(logoSrc.value))
+
+const openOrderModal = () => {
+    console.log('openModal');
+    
+    formStore.openOrderModal()
+}
 
 watch(logoSrc, () => {
     logoUrl.value = getImageUrl(logoSrc.value);

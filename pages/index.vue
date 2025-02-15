@@ -6,7 +6,6 @@
         <UiTheHeader
             :data="data?.header?.data"
             :main="data?.main?.data"
-            @openModal="visibleModal = true"
         />
         <div class="container ps-0 pe-0 flex flex-col gap-3 md:gap-10">
 
@@ -16,7 +15,7 @@
             />
             <OrderWrapper
                 :key="'top'"
-                :data="data?.order?.data ?? []"
+                :data="data?.order?.data ?? []" 
                 footer
                 :desc="data?.order?.data?.Desc ?? ''"
             />
@@ -36,7 +35,7 @@
         <UiTheFooter :data="data?.main?.data ?? null" />
         <Transition name="fade">
             <Teleport
-                v-if="visibleModal"
+                v-if="isModalVisible"
                 to="body"
             >
                 <div class="w-screen h-screen fixed top-0 left-0 z-[999] flex justify-center items-center">
@@ -44,7 +43,7 @@
                     <div class="bg-white z-[1001] rounded-[10px] p-3 md:p-6 flex flex-col">
                         <div class="flex justify-between items-start">
                             <div></div>
-                            <button @click="visibleModal = false">
+                            <button @click="closeOrderModal">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="32"
@@ -70,9 +69,6 @@
                                 :desc="data?.order?.data?.Desc ?? ''"
                                 modal
                             />
-
-
-
                         </div>
                     </div>
                 </div>
@@ -85,11 +81,13 @@
 
 <script setup>
 import { useStore } from '../store/index'
+import { useFormStore } from '@/store/form'
 import { API } from '../composables/api'
 import { useElementVisibility } from '@vueuse/core'
-const store = useStore()
+const store = useStore();
+const formStore = useFormStore();
+const { isModalVisible } = storeToRefs(formStore);
 
-const visibleModal = ref(false)
 const el = ref(null)
 const targetIsVisible = useElementVisibility(el)
 
@@ -112,45 +110,13 @@ const { data, status, error, refresh } = await useAsyncData('dataApi', async () 
     return { header, main, about, order, your, config, seo }
 })
 
-const activeType = ref('Аренда')
-const types = reactive(['Аренда', 'Продажа'])
-
-const selectSity = ref(null)
-const selectNumber = ref(null)
-const selectMoney = ref(null)
-
-const activeTypeObject = ref('Квартира')
-const typesObject = reactive(['Квартира', 'Дом', 'Участок', 'Коммерческая невижимость'])
-
 const headMeta = data.value.seo.data;
 // Разделяем meta и link теги
 const metaTags = headMeta.customMetaTags.filter(tag => tag.tag === 'meta').map(tag => tag.attributes) || [];
 const linkTags = headMeta.customMetaTags.filter(tag => tag.tag === 'link').map(tag => tag.attributes) || [];
 
-console.log('headMeta', headMeta);
-
-
-async function sendOrder() {
-    const formData =
-        'Заявка с сайта' + '\n' +
-        'Тип сделки: ' + activeType.value + '\n' +
-        'Тип недвижимости: ' + activeTypeObject.value + '\n' +
-        'Город: ' + selectSity.value + '\n' +
-        'Бюджет: ' + selectMoney.value + '\n' +
-        'Номер: ' + selectNumber.value
-
-    const data = {
-        text: formData
-    }
-    console.log(data);
-
-    await $fetch(
-        'https://api.telegram.org/bot8021336205:AAF2q1B9QXCRsACOdinwT1eddLL3umVRHuM/sendMessage?chat_id=-4650772536',
-        {
-            method: 'POST',
-            body: data
-        }
-    )
+const closeOrderModal = () => {
+    formStore.closeOrderModal()
 }
 
 useHead({
