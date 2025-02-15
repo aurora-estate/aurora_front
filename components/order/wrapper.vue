@@ -14,7 +14,7 @@
         </div>
         <div
             class="grid grid-cols-1  z-[49]  gap-3 items-center w-full justify-between"
-            :class="[modal ? '' : 'md:flex']"
+            :class="[modal ? 'modal' : 'md:flex']"
         >
             <div
                 v-if="!min"

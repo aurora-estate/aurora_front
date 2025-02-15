@@ -17,8 +17,8 @@
         >{{ title }}</span>
     </button>
     <div
-    v-else-if="isLoading"
-    class="h-8 w-8 border-4 border-black border-t-transparent rounded-full animate-spin my-1"
+        v-else-if="isLoading"
+        class="spinner mx-auto h-8 w-8 border-4 border-black border-t-transparent rounded-full animate-spin my-4"
     ></div>
     <button
         v-else-if="isModalButton"
@@ -143,5 +143,9 @@ function event() {
 
 .b_blur {
     backdrop-filter: blur(7.4px);
+}
+
+.modal .spinner {
+    margin: 10px auto;
 }
 </style>
