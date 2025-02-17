@@ -14,7 +14,7 @@
                             nonBorder />
 
                     </div>
-                    <button @click="openModal"
+                    <button @click="openOrderModal"
                         class="border rounded-full text-[10px] px-3 h-6 flex items-center justify-center">
                         <span class="leading-4"> Оставить
                             заявку</span>
